@@ -1,0 +1,115 @@
+========
+Defset 1
+========
+
+defset list<B> Bs = {
+  def A0 : A<1>;
+}
+
+---
+
+(source_file
+  (defset
+    (type
+      (list_type
+        (type
+          (tok_identifier))))
+    (tok_identifier)
+    (def
+      (value
+        (tok_identifier))
+      (record_body
+        (parent_class_list
+          (class_ref
+            (tok_identifier)
+            (value_list
+              (value
+                (tok_integer
+                  (decimal_integer))))))))))
+
+========
+Defset 2
+========
+
+defset list<A> As = {
+  def A0 : A<1>;
+  foreach i = 1...2 in {
+    def A#i : A<!add(i, 1)>;
+  }
+  defset list<A> SubAs = {
+    defm B0 : B<2>;
+    defm C0 : C<3>;
+  }
+}
+
+---
+
+(source_file
+  (defset
+    (type
+      (list_type
+        (type
+          (tok_identifier))))
+    (tok_identifier)
+    (def
+      (value
+        (tok_identifier))
+      (record_body
+        (parent_class_list
+          (class_ref
+            (tok_identifier)
+            (value_list
+              (value
+                (tok_integer
+                  (decimal_integer))))))))
+    (foreach
+      (foreach_iterator
+        (tok_identifier)
+        (range_piece
+          (tok_integer
+            (decimal_integer))
+          (tok_integer
+            (decimal_integer))))
+      (def
+        (value
+          (tok_identifier)
+          (tok_identifier))
+        (record_body
+          (parent_class_list
+            (class_ref
+              (tok_identifier)
+              (value_list
+                (value
+                  (bang_operator)
+                  (value_list
+                    (value
+                      (tok_identifier))
+                    (value
+                      (tok_integer
+                        (decimal_integer)))))))))))
+    (defset
+      (type
+        (list_type
+          (type
+            (tok_identifier))))
+      (tok_identifier)
+      (defm
+        (value
+          (tok_identifier))
+        (parent_class_list
+          (class_ref
+            (tok_identifier)
+            (value_list
+              (value
+                (tok_integer
+                  (decimal_integer)))))))
+      (defm
+        (value
+          (tok_identifier))
+        (parent_class_list
+          (class_ref
+            (tok_identifier)
+            (value_list
+              (value
+                (tok_integer
+                  (decimal_integer))))))))))

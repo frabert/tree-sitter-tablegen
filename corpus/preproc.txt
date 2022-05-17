@@ -1,0 +1,67 @@
+=========
+Define
+=========
+
+#define Hello
+
+---
+
+(source_file
+  (preproc_define
+    (macro_name)))
+
+=========
+Simple ifdef
+=========
+
+#ifdef Hello
+#endif
+
+---
+
+(source_file
+  (preproc_ifdef
+    (macro_name)))
+
+=========
+Ifdef with stuff
+=========
+
+#ifdef Hello
+def x;
+#endif
+
+---
+
+(source_file
+  (preproc_ifdef
+    (macro_name)
+      (def
+        (value
+          (tok_identifier))
+        (record_body))))
+
+=========
+Ifndef with else
+=========
+
+#ifndef Hello
+def x;
+#else
+def y;
+#endif
+
+---
+
+(source_file
+  (preproc_ifdef
+    (macro_name)
+      (def
+        (value
+          (tok_identifier))
+        (record_body))
+    (preproc_else
+      (def
+        (value
+          (tok_identifier))
+        (record_body)))))

@@ -1,0 +1,63 @@
+============
+Multiclass 1
+============
+
+multiclass Foo <int Bar> {
+  def : SomeClass<Bar>;
+}
+
+---
+
+(source_file
+    (multiclass
+      (tok_identifier)
+      (template_arg_list
+        (template_arg_decl
+          (type
+            (int_type))
+          (tok_identifier)))
+      (def
+        (record_body
+          (parent_class_list
+            (class_ref
+              (tok_identifier)
+              (value_list
+                (value
+                  (tok_identifier)))))))))
+
+============
+Multiclass 2
+============
+
+multiclass Foo {
+  def : SomeClass;
+}
+
+---
+
+(source_file
+    (multiclass
+      (tok_identifier)
+      (def
+        (record_body
+          (parent_class_list
+            (class_ref
+              (tok_identifier)))))))
+
+============
+Multiclass 3
+============
+
+multiclass Foo {
+  def x;
+}
+
+---
+
+(source_file
+    (multiclass
+      (tok_identifier)
+      (def
+        (value
+          (tok_identifier))
+        (record_body))))

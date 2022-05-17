@@ -1,0 +1,71 @@
+====
+Simple if
+====
+
+if A then def x;
+
+---
+
+(source_file
+  (if
+    (value
+      (tok_identifier))
+    (if_body
+      (def
+        (value
+          (tok_identifier))
+        (record_body)))))
+
+====
+If with else
+====
+
+if A then def x; else def y;
+
+---
+
+(source_file
+  (if
+    (value
+      (tok_identifier))
+    (if_body
+      (def
+        (value
+          (tok_identifier))
+        (record_body)))
+    (if_body
+      (def
+        (value
+          (tok_identifier))
+        (record_body)))))
+
+====
+Dangling else
+====
+
+if A then
+    if B then
+        def y;
+    else
+        def z;
+
+---
+
+(source_file
+  (if
+    (value
+      (tok_identifier))
+    (if_body
+      (if
+        (value
+          (tok_identifier))
+        (if_body
+          (def
+            (value
+              (tok_identifier))
+            (record_body)))
+        (if_body
+          (def
+            (value
+              (tok_identifier))
+            (record_body)))))))

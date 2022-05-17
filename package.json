@@ -1,0 +1,29 @@
+{
+  "name": "tree-sitter-tablegen",
+  "version": "0.1.0",
+  "description": "",
+  "main": "bindings/node",
+  "author": "Francesco Bertolaccini <francesco.bertolaccini@trailofbits.com>",
+  "license": "MIT",
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test && tree-sitter parse examples/*.td --quiet --time",
+    "test-windows": "tree-sitter test"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.6"
+  },
+  "dependencies": {
+    "nan": "^2.15.0"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.c",
+      "file-types": [
+        "c",
+        "h"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1754 @@
+[
+  {
+    "type": "assert",
+    "named": true,
+    "fields": {
+      "cond": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      },
+      "message": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "bang_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "bits_type",
+    "named": true,
+    "fields": {
+      "size": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_integer",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "body_defvar",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "body_let",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "range_list",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "body_member",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "code",
+            "named": false
+          },
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      },
+      "template_args": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "template_arg_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "record_body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_ref",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tok_identifier",
+          "named": true
+        },
+        {
+          "type": "value_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cond_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dag_arg",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tok_var_name",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dag_arg_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dag_arg",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "def",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "record_body",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "defm",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "parent_class_list",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "defset",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assert",
+          "named": true
+        },
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "def",
+          "named": true
+        },
+        {
+          "type": "defm",
+          "named": true
+        },
+        {
+          "type": "defset",
+          "named": true
+        },
+        {
+          "type": "defvar",
+          "named": true
+        },
+        {
+          "type": "foreach",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "let",
+          "named": true
+        },
+        {
+          "type": "multiclass",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "defvar",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "foreach",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "assert",
+            "named": true
+          },
+          {
+            "type": "class",
+            "named": true
+          },
+          {
+            "type": "def",
+            "named": true
+          },
+          {
+            "type": "defm",
+            "named": true
+          },
+          {
+            "type": "defset",
+            "named": true
+          },
+          {
+            "type": "defvar",
+            "named": true
+          },
+          {
+            "type": "foreach",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "let",
+            "named": true
+          },
+          {
+            "type": "multiclass",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "foreach_iterator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "foreach_iterator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "range_list",
+          "named": true
+        },
+        {
+          "type": "range_piece",
+          "named": true
+        },
+        {
+          "type": "tok_identifier",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if",
+    "named": true,
+    "fields": {
+      "cond": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "if_body",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "if_body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assert",
+          "named": true
+        },
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "def",
+          "named": true
+        },
+        {
+          "type": "defm",
+          "named": true
+        },
+        {
+          "type": "defset",
+          "named": true
+        },
+        {
+          "type": "defvar",
+          "named": true
+        },
+        {
+          "type": "foreach",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "let",
+          "named": true
+        },
+        {
+          "type": "multiclass",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "include_directive",
+    "named": true,
+    "fields": {
+      "file": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "let",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assert",
+          "named": true
+        },
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "def",
+          "named": true
+        },
+        {
+          "type": "defm",
+          "named": true
+        },
+        {
+          "type": "defset",
+          "named": true
+        },
+        {
+          "type": "defvar",
+          "named": true
+        },
+        {
+          "type": "foreach",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "let",
+          "named": true
+        },
+        {
+          "type": "let_item",
+          "named": true
+        },
+        {
+          "type": "multiclass",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "let_item",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      },
+      "template_args": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "range_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "multiclass",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "assert",
+            "named": true
+          },
+          {
+            "type": "def",
+            "named": true
+          },
+          {
+            "type": "defm",
+            "named": true
+          },
+          {
+            "type": "defvar",
+            "named": true
+          },
+          {
+            "type": "foreach",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "let",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "parent_class_list",
+          "named": true
+        },
+        {
+          "type": "template_arg_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parent_class_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class_ref",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "preproc_define",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "macro_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "preproc_else",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assert",
+          "named": true
+        },
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "def",
+          "named": true
+        },
+        {
+          "type": "defm",
+          "named": true
+        },
+        {
+          "type": "defset",
+          "named": true
+        },
+        {
+          "type": "defvar",
+          "named": true
+        },
+        {
+          "type": "foreach",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "include_directive",
+          "named": true
+        },
+        {
+          "type": "let",
+          "named": true
+        },
+        {
+          "type": "multiclass",
+          "named": true
+        },
+        {
+          "type": "preproc_define",
+          "named": true
+        },
+        {
+          "type": "preproc_ifdef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "preproc_ifdef",
+    "named": true,
+    "fields": {
+      "cond": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "macro_name",
+            "named": true
+          }
+        ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "preproc_else",
+            "named": true
+          }
+        ]
+      },
+      "then": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "assert",
+            "named": true
+          },
+          {
+            "type": "class",
+            "named": true
+          },
+          {
+            "type": "def",
+            "named": true
+          },
+          {
+            "type": "defm",
+            "named": true
+          },
+          {
+            "type": "defset",
+            "named": true
+          },
+          {
+            "type": "defvar",
+            "named": true
+          },
+          {
+            "type": "foreach",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "include_directive",
+            "named": true
+          },
+          {
+            "type": "let",
+            "named": true
+          },
+          {
+            "type": "multiclass",
+            "named": true
+          },
+          {
+            "type": "preproc_define",
+            "named": true
+          },
+          {
+            "type": "preproc_ifdef",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "range_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "range_piece",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "range_piece",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tok_integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "record_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assert",
+          "named": true
+        },
+        {
+          "type": "body_defvar",
+          "named": true
+        },
+        {
+          "type": "body_let",
+          "named": true
+        },
+        {
+          "type": "body_member",
+          "named": true
+        },
+        {
+          "type": "parent_class_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assert",
+          "named": true
+        },
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "def",
+          "named": true
+        },
+        {
+          "type": "defm",
+          "named": true
+        },
+        {
+          "type": "defset",
+          "named": true
+        },
+        {
+          "type": "defvar",
+          "named": true
+        },
+        {
+          "type": "foreach",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "include_directive",
+          "named": true
+        },
+        {
+          "type": "let",
+          "named": true
+        },
+        {
+          "type": "multiclass",
+          "named": true
+        },
+        {
+          "type": "preproc_define",
+          "named": true
+        },
+        {
+          "type": "preproc_ifdef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "template_arg_decl",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "template_arg_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "template_arg_decl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tok_integer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bin_integer",
+          "named": true
+        },
+        {
+          "type": "decimal_integer",
+          "named": true
+        },
+        {
+          "type": "hex_integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tok_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bit_type",
+          "named": true
+        },
+        {
+          "type": "bits_type",
+          "named": true
+        },
+        {
+          "type": "dag_type",
+          "named": true
+        },
+        {
+          "type": "int_type",
+          "named": true
+        },
+        {
+          "type": "list_type",
+          "named": true
+        },
+        {
+          "type": "string_type",
+          "named": true
+        },
+        {
+          "type": "tok_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value",
+    "named": true,
+    "fields": {
+      "args": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "dag_arg_list",
+            "named": true
+          },
+          {
+            "type": "value_list",
+            "named": true
+          }
+        ]
+      },
+      "bits": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "value_list",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "cond_clauses": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "cond_clause",
+            "named": true
+          }
+        ]
+      },
+      "dag": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          }
+        ]
+      },
+      "list": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
+            "named": false
+          },
+          {
+            "type": "type",
+            "named": true
+          },
+          {
+            "type": "value_list",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "dag_arg",
+            "named": true
+          },
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      },
+      "op": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "bang_operator",
+            "named": true
+          }
+        ]
+      },
+      "type_args": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "value_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "cond_operator",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "tok_code",
+          "named": true
+        },
+        {
+          "type": "tok_integer",
+          "named": true
+        },
+        {
+          "type": "tok_string",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "unknown",
+          "named": true
+        },
+        {
+          "type": "value_suffix",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value_suffix",
+    "named": true,
+    "fields": {
+      "bits": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "range_list",
+            "named": true
+          }
+        ]
+      },
+      "field": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "tok_identifier",
+            "named": true
+          }
+        ]
+      },
+      "slices": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "range_list",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "!add",
+    "named": false
+  },
+  {
+    "type": "!and",
+    "named": false
+  },
+  {
+    "type": "!cast",
+    "named": false
+  },
+  {
+    "type": "!con",
+    "named": false
+  },
+  {
+    "type": "!dag",
+    "named": false
+  },
+  {
+    "type": "!empty",
+    "named": false
+  },
+  {
+    "type": "!eq",
+    "named": false
+  },
+  {
+    "type": "!filter",
+    "named": false
+  },
+  {
+    "type": "!find",
+    "named": false
+  },
+  {
+    "type": "!foldl",
+    "named": false
+  },
+  {
+    "type": "!foreach",
+    "named": false
+  },
+  {
+    "type": "!ge",
+    "named": false
+  },
+  {
+    "type": "!getdagop",
+    "named": false
+  },
+  {
+    "type": "!gt",
+    "named": false
+  },
+  {
+    "type": "!head",
+    "named": false
+  },
+  {
+    "type": "!if",
+    "named": false
+  },
+  {
+    "type": "!interleave",
+    "named": false
+  },
+  {
+    "type": "!isa",
+    "named": false
+  },
+  {
+    "type": "!le",
+    "named": false
+  },
+  {
+    "type": "!listconcat",
+    "named": false
+  },
+  {
+    "type": "!listsplat",
+    "named": false
+  },
+  {
+    "type": "!lt",
+    "named": false
+  },
+  {
+    "type": "!mul",
+    "named": false
+  },
+  {
+    "type": "!ne",
+    "named": false
+  },
+  {
+    "type": "!not",
+    "named": false
+  },
+  {
+    "type": "!or",
+    "named": false
+  },
+  {
+    "type": "!setdagop",
+    "named": false
+  },
+  {
+    "type": "!shl",
+    "named": false
+  },
+  {
+    "type": "!size",
+    "named": false
+  },
+  {
+    "type": "!sra",
+    "named": false
+  },
+  {
+    "type": "!srl",
+    "named": false
+  },
+  {
+    "type": "!strconcat",
+    "named": false
+  },
+  {
+    "type": "!sub",
+    "named": false
+  },
+  {
+    "type": "!subst",
+    "named": false
+  },
+  {
+    "type": "!substr",
+    "named": false
+  },
+  {
+    "type": "!tail",
+    "named": false
+  },
+  {
+    "type": "!xor",
+    "named": false
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "...",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "assert",
+    "named": false
+  },
+  {
+    "type": "bin_integer",
+    "named": true
+  },
+  {
+    "type": "bit_type",
+    "named": true
+  },
+  {
+    "type": "bits",
+    "named": false
+  },
+  {
+    "type": "class",
+    "named": false
+  },
+  {
+    "type": "code",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "cond_operator",
+    "named": true
+  },
+  {
+    "type": "dag_type",
+    "named": true
+  },
+  {
+    "type": "decimal_integer",
+    "named": true
+  },
+  {
+    "type": "def",
+    "named": false
+  },
+  {
+    "type": "defm",
+    "named": false
+  },
+  {
+    "type": "defset",
+    "named": false
+  },
+  {
+    "type": "defvar",
+    "named": false
+  },
+  {
+    "type": "else",
+    "named": false
+  },
+  {
+    "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "false",
+    "named": true
+  },
+  {
+    "type": "foreach",
+    "named": false
+  },
+  {
+    "type": "hex_integer",
+    "named": true
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "in",
+    "named": false
+  },
+  {
+    "type": "include",
+    "named": false
+  },
+  {
+    "type": "int_type",
+    "named": true
+  },
+  {
+    "type": "let",
+    "named": false
+  },
+  {
+    "type": "list",
+    "named": false
+  },
+  {
+    "type": "macro_name",
+    "named": true
+  },
+  {
+    "type": "multiclass",
+    "named": false
+  },
+  {
+    "type": "string_type",
+    "named": true
+  },
+  {
+    "type": "then",
+    "named": false
+  },
+  {
+    "type": "tok_code",
+    "named": true
+  },
+  {
+    "type": "tok_identifier",
+    "named": true
+  },
+  {
+    "type": "tok_var_name",
+    "named": true
+  },
+  {
+    "type": "true",
+    "named": true
+  },
+  {
+    "type": "unknown",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]

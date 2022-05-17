@@ -1,0 +1,44 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - 'master'
+
+    tags:
+      - '*'
+
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build_linux:
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Adding github workspace as safe directory
+        # See issue https://github.com/actions/checkout/issues/760
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: true
+      - name: Install utility tools
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nodejs
+          npm install --dev
+      - name: Generate parser files
+        shell: bash
+        run: npm run generate
+      - name: Check that nothing has changed
+        shell: bash
+        run: git diff --exit-code
+      - name: Tests
+        shell: bash
+        run: npm test

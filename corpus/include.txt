@@ -1,0 +1,10 @@
+=======
+Include
+=======
+
+include "hello.txt"
+
+---
+
+(source_file
+    (include_directive (tok_string)))

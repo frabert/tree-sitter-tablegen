@@ -1,0 +1,276 @@
+=====
+Def 1
+=====
+
+def Foo {
+  SomeClass Baz = Bar;
+}
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (body_member
+        (type
+          (tok_identifier))
+        (tok_identifier)
+        (value
+          (tok_identifier))))))
+
+=====
+Def 2
+=====
+
+def Bar : SomeClass {
+  int X = 5;
+}
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (parent_class_list
+        (class_ref
+          (tok_identifier)))
+      (body_member
+        (type
+          (int_type))
+        (tok_identifier)
+        (value
+          (tok_integer
+            (decimal_integer)))))))
+
+=====
+Def 3
+=====
+
+def foo : test<[{ hello world! }]>;
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (parent_class_list
+        (class_ref
+          (tok_identifier)
+          (value_list
+            (value
+              (tok_code))))))))
+
+=====
+Def 4
+=====
+
+def X {
+  int Y = 0xFFFF0000;
+}
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (body_member
+        (type
+          (int_type))
+        (tok_identifier)
+        (value
+          (tok_integer
+            (hex_integer)))))))
+
+=====
+Def 5
+=====
+
+def {
+  bits<2> X = 5;
+}
+
+---
+
+(source_file
+  (def
+    (record_body
+      (body_member
+        (type
+          (bits_type
+            (tok_integer
+              (decimal_integer))))
+        (tok_identifier)
+        (value
+          (tok_integer
+            (decimal_integer)))))))
+
+=====
+Def 6
+=====
+
+def : Foo<{1, 0, 1}>;
+
+---
+
+(source_file
+  (def
+    (record_body
+      (parent_class_list
+        (class_ref
+          (tok_identifier)
+          (value_list
+            (value
+              (value_list
+                (value
+                  (tok_integer
+                    (decimal_integer)))
+                (value
+                  (tok_integer
+                    (decimal_integer)))
+                (value
+                  (tok_integer
+                    (decimal_integer)))))))))))
+
+=====
+Def 7
+=====
+
+def Test : C<"A0">;
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (parent_class_list
+        (class_ref
+          (tok_identifier)
+          (value_list
+            (value
+              (tok_string))))))))
+
+=====
+Def 8
+=====
+
+def Reg : RegisterClass<(add R0)>;
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (parent_class_list
+        (class_ref
+          (tok_identifier)
+          (value_list
+            (value
+              (dag_arg
+                (value
+                  (tok_identifier)))
+              (dag_arg_list
+                (dag_arg
+                  (value
+                    (tok_identifier)))))))))))
+
+=====
+Def 9
+=====
+
+def Foo {
+  let x = "hello";
+}
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (body_let
+        (tok_identifier)
+        (value
+          (tok_string))))))
+
+======
+Def 10
+======
+
+def Foo {
+  let x = [{ hello }];
+}
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (body_let
+        (tok_identifier)
+        (value
+          (tok_code))))))
+
+======
+Def 11
+======
+
+def Foo {
+  let x = [{
+    hello
+  }];
+}
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (body_let
+        (tok_identifier)
+        (value
+          (tok_code))))))
+
+======
+Def 11
+======
+
+def Foo {
+  let x = [{
+    hello
+  }];
+
+  let y = [{ world }];
+}
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier))
+    (record_body
+      (body_let
+        (tok_identifier)
+        (value
+          (tok_code)))
+      (body_let
+        (tok_identifier)
+        (value
+          (tok_code))))))

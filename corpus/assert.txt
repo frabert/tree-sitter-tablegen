@@ -1,0 +1,63 @@
+========
+Assert 1
+========
+
+assert !eq(!substr(Rec01.name, 0, 3), "Jane"),
+       !strconcat("first name is incorrect: ", Rec01.name);
+
+---
+
+(source_file
+  (assert
+    (value
+      (bang_operator)
+      (value_list
+        (value
+          (bang_operator)
+          (value_list
+            (value
+              (tok_identifier)
+              (value_suffix
+                (tok_identifier)))
+            (value
+              (tok_integer
+                (decimal_integer)))
+            (value
+              (tok_integer
+                (decimal_integer)))))
+        (value
+          (tok_string))))
+    (value
+      (bang_operator)
+      (value_list
+        (value
+          (tok_string))
+        (value
+          (tok_identifier)
+          (value_suffix
+            (tok_identifier)))))))
+
+========
+Assert 2
+========
+
+assert !ge(!size(Name), 20), "primary name is too short: " # Name;
+
+---
+
+(source_file
+  (assert
+    (value
+      (bang_operator)
+      (value_list
+        (value
+          (bang_operator)
+          (value_list
+            (value
+              (tok_identifier))))
+        (value
+          (tok_integer
+            (decimal_integer)))))
+    (value
+      (tok_string)
+      (tok_identifier))))

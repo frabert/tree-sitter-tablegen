@@ -1,0 +1,200 @@
+========
+Defvar 1
+========
+
+defvar Name = "Grace Brewster Murray Hopper";
+
+---
+
+(source_file
+  (defvar
+    (tok_identifier)
+    (value
+      (tok_string))))
+
+========
+Defvar 2
+========
+
+defvar IntList = [0, 1, 2];
+
+---
+
+(source_file
+  (defvar
+    (tok_identifier)
+    (value
+      (value_list
+        (value
+          (tok_integer
+            (decimal_integer)))
+        (value
+          (tok_integer
+            (decimal_integer)))
+        (value
+          (tok_integer
+            (decimal_integer)))))))
+
+========
+Defvar 3
+========
+
+defvar IntList = !add(x, 100);
+
+---
+
+(source_file
+  (defvar
+    (tok_identifier)
+    (value
+      (bang_operator)
+      (value_list
+        (value
+          (tok_identifier))
+        (value
+          (tok_integer
+            (decimal_integer)))))))
+
+========
+Defvar 4
+========
+
+defvar myvar2 = "string of " # myvar;
+
+---
+
+(source_file
+  (defvar
+    (tok_identifier)
+    (value
+      (tok_string)
+      (tok_identifier))))
+
+========
+Defvar 5
+========
+
+defvar EmptyList = []<string>;
+
+---
+
+(source_file
+  (defvar
+    (tok_identifier)
+    (value
+      (type
+        (string_type)))))
+
+========
+Defvar 6
+========
+
+defvar BitsList = [ {0, 1, 0}, {1, 1, 1} ];
+
+---
+
+(source_file
+  (defvar
+    (tok_identifier)
+    (value
+      (value_list
+        (value
+          (value_list
+            (value
+              (tok_integer
+                (decimal_integer)))
+            (value
+              (tok_integer
+                (decimal_integer)))
+            (value
+              (tok_integer
+                (decimal_integer)))))
+        (value
+          (value_list
+            (value
+              (tok_integer
+                (decimal_integer)))
+            (value
+              (tok_integer
+                (decimal_integer)))
+            (value
+              (tok_integer
+                (decimal_integer)))))))))
+
+========
+Defvar 7
+========
+
+defvar BitList = [0, 1, 1, 0, 1]<bit>;
+
+---
+
+(source_file
+  (defvar
+    (tok_identifier)
+    (value
+      (value_list
+        (value
+          (tok_integer
+            (decimal_integer)))
+        (value
+          (tok_integer
+            (decimal_integer)))
+        (value
+          (tok_integer
+            (decimal_integer)))
+        (value
+          (tok_integer
+            (decimal_integer)))
+        (value
+          (tok_integer
+            (decimal_integer))))
+      (type
+        (bit_type)))))
+
+========
+Defvar 8
+========
+
+defvar TrueVar = true;
+
+---
+
+(source_file
+  (defvar
+    (tok_identifier)
+    (value
+      (true))))
+
+========
+Defvar 9
+========
+
+defvar Var5 = [0, 1, 2, 3][2...5];
+
+---
+
+(source_file
+  (defvar
+    (tok_identifier)
+    (value
+      (value_list
+        (value
+          (tok_integer
+            (decimal_integer)))
+        (value
+          (tok_integer
+            (decimal_integer)))
+        (value
+          (tok_integer
+            (decimal_integer)))
+        (value
+          (tok_integer
+            (decimal_integer))))
+      (value_suffix
+        (range_list
+          (range_piece
+            (tok_integer
+              (decimal_integer))
+            (tok_integer
+              (decimal_integer))))))))

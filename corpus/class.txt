@@ -1,0 +1,195 @@
+=======
+Class 1
+=======
+
+class Foo <int Bar> {
+  int Baz = Bar;
+}
+
+---
+
+(source_file
+  (class
+    (tok_identifier)
+    (template_arg_list
+      (template_arg_decl
+        (type
+          (int_type))
+        (tok_identifier)))
+    (record_body
+      (body_member
+        (type
+          (int_type))
+        (tok_identifier)
+        (value
+          (tok_identifier))))))
+
+=======
+Class 2
+=======
+
+class Foo {
+  int Bar = 5;
+  int Baz = Bar;
+}
+
+---
+
+(source_file
+  (class
+    (tok_identifier)
+    (record_body
+      (body_member
+        (type
+          (int_type))
+        (tok_identifier)
+        (value
+          (tok_integer
+            (decimal_integer))))
+      (body_member
+        (type
+          (int_type))
+        (tok_identifier)
+        (value
+          (tok_identifier))))))
+
+=======
+Class 3
+=======
+
+class test<code C> {
+  code Code = C;
+}
+
+---
+
+(source_file
+  (class
+    (tok_identifier)
+    (template_arg_list
+      (template_arg_decl
+        (type
+          (tok_identifier))
+        (tok_identifier)))
+    (record_body
+      (body_member
+        (tok_identifier)
+        (value
+          (tok_identifier))))))
+
+=======
+Class 4
+=======
+
+class A<int k, bits<2> x = 1> {
+  int K = k;
+  bits<2> Bits = x;
+}
+
+---
+
+(source_file
+  (class
+    (tok_identifier)
+    (template_arg_list
+      (template_arg_decl
+        (type
+          (int_type))
+        (tok_identifier))
+      (template_arg_decl
+        (type
+          (bits_type
+            (tok_integer
+              (decimal_integer))))
+        (tok_identifier)
+        (value
+          (tok_integer
+            (decimal_integer)))))
+    (record_body
+      (body_member
+        (type
+          (int_type))
+        (tok_identifier)
+        (value
+          (tok_identifier)))
+      (body_member
+        (type
+          (bits_type
+            (tok_integer
+              (decimal_integer))))
+        (tok_identifier)
+        (value
+          (tok_identifier))))))
+
+=======
+Class 5
+=======
+
+class C<A x = a1> {
+  bits<2> Bits = x.Bits;
+}
+
+---
+
+(source_file
+  (class
+    (tok_identifier)
+    (template_arg_list
+      (template_arg_decl
+        (type
+          (tok_identifier))
+        (tok_identifier)
+        (value
+          (tok_identifier))))
+    (record_body
+      (body_member
+        (type
+          (bits_type
+            (tok_integer
+              (decimal_integer))))
+        (tok_identifier)
+        (value
+          (tok_identifier)
+          (value_suffix
+            (tok_identifier)))))))
+
+=======
+Class 6
+=======
+
+class A<bits<8> a, bits<2> b> {
+  bits<8> add = !add(a, b);
+}
+
+---
+
+(source_file
+  (class
+    (tok_identifier)
+    (template_arg_list
+      (template_arg_decl
+        (type
+          (bits_type
+            (tok_integer
+              (decimal_integer))))
+        (tok_identifier))
+      (template_arg_decl
+        (type
+          (bits_type
+            (tok_integer
+              (decimal_integer))))
+        (tok_identifier)))
+    (record_body
+      (body_member
+        (type
+          (bits_type
+            (tok_integer
+              (decimal_integer))))
+        (tok_identifier)
+        (value
+          (bang_operator)
+          (value_list
+            (value
+              (tok_identifier))
+            (value
+              (tok_identifier))))))))
