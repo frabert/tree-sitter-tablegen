@@ -44,25 +44,9 @@ static bool is_whitespace(int c) {
 }
 
 struct Scanner {
-  struct State {
-    unsigned depth = 0;
-    bool found_asterisk = false;
-    bool found_slash = false;
-  };
-  static_assert(std::is_trivially_copyable<State>::value,
-                "State must be trivially copyable for (de)serialization");
-  static_assert(sizeof(State) <= TREE_SITTER_SERIALIZATION_BUFFER_SIZE,
-                "State is too big");
+  unsigned serialize(char *buffer) { return 0; }
 
-  State state{};
-  unsigned serialize(char *buffer) {
-    std::memcpy(buffer, &state, sizeof(state));
-    return sizeof(state);
-  }
-
-  void deserialize(const char *buffer, unsigned length) {
-    std::memcpy(&state, buffer, length);
-  }
+  void deserialize(const char *buffer, unsigned length) {}
 
   bool scan(TSLexer *lexer, const bool *valid_symbols) {
     Lexer l(lexer);

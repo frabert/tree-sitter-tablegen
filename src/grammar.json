@@ -307,6 +307,14 @@
         {
           "type": "STRING",
           "value": "!xor"
+        },
+        {
+          "type": "STRING",
+          "value": "!getop"
+        },
+        {
+          "type": "STRING",
+          "value": "!setop"
         }
       ]
     },
@@ -711,61 +719,61 @@
         }
       ]
     },
-    "range_piece": {
-      "type": "CHOICE",
+    "range": {
+      "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "tok_integer"
+          "name": "value"
         },
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
-            {
-              "type": "SYMBOL",
-              "name": "tok_integer"
-            },
-            {
-              "type": "STRING",
-              "value": "..."
-            },
-            {
-              "type": "SYMBOL",
-              "name": "tok_integer"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "tok_integer"
-            },
             {
               "type": "STRING",
               "value": "-"
             },
             {
-              "type": "SYMBOL",
-              "name": "tok_integer"
+              "type": "STRING",
+              "value": "..."
             }
           ]
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "tok_integer"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "tok_integer"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "value"
         }
       ]
+    },
+    "range_piece": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "value"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "range"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "tok_integer"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "tok_integer"
+              }
+            ]
+          }
+        ]
+      }
     },
     "value_list": {
       "type": "SEQ",
@@ -2207,10 +2215,6 @@
             {
               "type": "SYMBOL",
               "name": "range_piece"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "value"
             }
           ]
         }

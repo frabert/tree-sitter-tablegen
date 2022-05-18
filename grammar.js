@@ -86,11 +86,11 @@ module.exports = grammar({
             seq('[', field('slices', $.range_list), ']'),
             seq('.', field('field', $.tok_identifier))),
         range_list: $ => sepBy1(',', $.range_piece),
-        range_piece: $ => choice(
-            $.tok_integer,
-            seq($.tok_integer, '...', $.tok_integer),
-            seq($.tok_integer, '-', $.tok_integer),
-            seq($.tok_integer, $.tok_integer)),
+        range: $ => seq($.value, choice('-', '...'), $.value),
+        range_piece: $ => prec(1, choice(
+            $.value,
+            $.range,
+            seq($.tok_integer, $.tok_integer))),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#simple-values
         value_list: $ => sepBy1(',', $.value),
@@ -220,8 +220,7 @@ module.exports = grammar({
             $._preprocessor_directive),
         foreach_iterator: $ => seq($.tok_identifier, '=', choice(
             seq('{', $.range_list, '}'),
-            $.range_piece,
-            $.value)),
+            $.range_piece)),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#if-select-statements-based-on-a-test
         if: $ => prec.right(

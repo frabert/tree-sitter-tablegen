@@ -12,10 +12,13 @@ foreach i = 0...5 in
     (foreach_iterator
       (tok_identifier)
       (range_piece
-        (tok_integer
-          (decimal_integer))
-        (tok_integer
-          (decimal_integer))))
+        (range
+          (value
+            (tok_integer
+              (decimal_integer)))
+          (value
+            (tok_integer
+              (decimal_integer))))))
     (def
       (value
         (tok_identifier)
@@ -37,10 +40,43 @@ foreach i = 0...5 in {
     (foreach_iterator
       (tok_identifier)
       (range_piece
-        (tok_integer
-          (decimal_integer))
-        (tok_integer
-          (decimal_integer))))
+        (range
+          (value
+            (tok_integer
+              (decimal_integer)))
+          (value
+            (tok_integer
+              (decimal_integer))))))
+    (def
+      (value
+        (tok_identifier)
+        (tok_identifier))
+      (record_body))))
+
+=========
+Foreach 3
+=========
+
+foreach i = Constant.A ... Constant.B in {
+  def Foo#i;
+}
+
+---
+
+(source_file
+  (foreach
+    (foreach_iterator
+      (tok_identifier)
+      (range_piece
+        (range
+          (value
+            (tok_identifier)
+            (value_suffix
+              (tok_identifier)))
+          (value
+            (tok_identifier)
+            (value_suffix
+              (tok_identifier))))))
     (def
       (value
         (tok_identifier)

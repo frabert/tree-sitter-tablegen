@@ -487,10 +487,6 @@
         {
           "type": "tok_identifier",
           "named": true
-        },
-        {
-          "type": "value",
-          "named": true
         }
       ]
     }
@@ -971,6 +967,21 @@
     }
   },
   {
+    "type": "range",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "range_list",
     "named": true,
     "fields": {},
@@ -994,7 +1005,15 @@
       "required": true,
       "types": [
         {
+          "type": "range",
+          "named": true
+        },
+        {
           "type": "tok_integer",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         }
       ]
@@ -1505,6 +1524,10 @@
     "named": false
   },
   {
+    "type": "!getop",
+    "named": false
+  },
+  {
     "type": "!gt",
     "named": false
   },
@@ -1558,6 +1581,10 @@
   },
   {
     "type": "!setdagop",
+    "named": false
+  },
+  {
+    "type": "!setop",
     "named": false
   },
   {
