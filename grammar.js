@@ -48,7 +48,8 @@ module.exports = grammar({
                                    '!gt', '!head', '!if', '!interleave', '!isa', '!le',
                                    '!listconcat', '!listsplat', '!lt', '!mul', '!ne', '!not',
                                    '!or', '!setdagop', '!shl', '!size', '!sra', '!srl',
-                                   '!strconcat', '!sub', '!subst', '!substr', '!tail', '!xor'),
+                                   '!strconcat', '!sub', '!subst', '!substr', '!tail', '!xor',
+                                   '!getop', '!setop'),
         cond_operator: $ => '!cond',
 
         // https://llvm.org/docs/TableGen/ProgRef.html#include-files
