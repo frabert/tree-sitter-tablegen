@@ -193,3 +193,24 @@ class A<bits<8> a, bits<2> b> {
               (tok_identifier))
             (value
               (tok_identifier))))))))
+
+=======
+Class 7
+=======
+
+class TestInsn {
+  field bits<16> Inst;
+}
+
+---
+
+(source_file
+  (class
+    (tok_identifier)
+    (record_body
+      (body_member
+        (type
+          (bits_type
+            (tok_integer
+              (decimal_integer))))
+        (tok_identifier)))))

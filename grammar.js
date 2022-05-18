@@ -2,7 +2,12 @@ module.exports = grammar({
     name: 'tablegen',
     extras: $ => [
         /\s|\\\r?\n/,
-        $.comment,
+        $.singleline_comment,
+        $.multiline_comment,
+    ],
+
+    externals: $ => [
+        $.multiline_comment
     ],
 
     word: $ => $.tok_identifier,
@@ -14,13 +19,7 @@ module.exports = grammar({
             $.include_directive,
             $._preprocessor_directive
         ),
-        comment: $ => token(choice(
-            seq('//', /(\\(.|\r?\n)|[^\\\n])*/),
-            seq(
-              '/*',
-              /[^*]*\*+([^/*][^*]*\*+)*/,
-              '/'
-            ))),
+        singleline_comment: $ => seq('//', /(\\(.|\r?\n)|[^\\\n])*/),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#literals
         decimal_integer: $ => /[\+\-]?[0-9]+/,
@@ -79,7 +78,7 @@ module.exports = grammar({
             $.bits_type, $.list_type),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#values-and-expressions
-        value: $ => sepBy1('#', $._value_partial),
+        value: $ => prec.left(sepBy1('#', $._value_partial)),
         _value_partial: $ => prec.left(seq($._simple_value, repeat($.value_suffix))),
         value_suffix: $ => choice(
             seq('{', field('bits', $.range_list), '}'),
@@ -148,6 +147,7 @@ module.exports = grammar({
             optional(seq('{', field('body', field('bits', $.range_list)), '}')),
             '=', $.value, ';'),
         body_member: $ => seq(
+            optional('field'),
             field('type', choice($.type, 'code')),
             field('name', $.tok_identifier),
             optional(seq('=', $.value)), ';'),
@@ -159,15 +159,17 @@ module.exports = grammar({
             $.body_let,
             $.body_member,
             $.body_defvar,
-            $.assert),
+            $.assert,
+            $._preprocessor_directive),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#def-define-a-concrete-record
         def: $ => seq('def', optional($.value), $.record_body),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#let-override-fields-in-classes-or-records
         let: $ => seq('let', $._let_list, 'in', choice(
-            seq('{', repeat($._statement), '}'),
+            seq('{', repeat($._let_statement), '}'),
             $._statement)),
+        _let_statement: $ => choice($._statement, $._preprocessor_directive),
         _let_list: $ => sepBy1(',', $.let_item),
         let_item: $ => seq(
             field('name', $.tok_identifier),
@@ -179,7 +181,9 @@ module.exports = grammar({
             field('name', $.tok_identifier),
             optional($.template_arg_list),
             optional($.parent_class_list),
-            '{', field('body', repeat1($._multiclass_statement)), '}'),
+            choice(
+                seq('{', field('body', repeat1($._multiclass_statement)), '}'),
+                ';')),
         _multiclass_statement: $ => choice(
             $.assert,
             $.def,
@@ -187,21 +191,32 @@ module.exports = grammar({
             $.defvar,
             $.foreach,
             $.if,
-            $.let),
+            $.let,
+            $._preprocessor_directive),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#defm-invoke-multiclasses-to-define-multiple-records
         defm: $ => seq('defm', optional($.value), optional($.parent_class_list), ';'),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#defset-create-a-definition-set
-        defset: $ => seq('defset', $.type, field('name', $.tok_identifier), '=', '{', repeat($._statement), '}'),
+        defset: $ => seq(
+            'defset',
+            $.type,
+            field('name', $.tok_identifier),
+            '=', '{', repeat($._defset_statement), '}'),
+        _defset_statement: $ => choice(
+            $._statement,
+            $._preprocessor_directive),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#defvar-define-a-variable
         defvar: $ => seq('defvar', field('name', $.tok_identifier), '=', $.value, ';'),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#foreach-iterate-over-a-sequence-of-statements
         foreach: $ => seq('foreach', $.foreach_iterator, 'in', field('body', choice(
-            seq('{', repeat($._statement), '}'),
+            seq('{', repeat($._foreach_statement), '}'),
             $._statement))),
+        _foreach_statement: $ => choice(
+            $._statement,
+            $._preprocessor_directive),
         foreach_iterator: $ => seq($.tok_identifier, '=', choice(
             seq('{', $.range_list, '}'),
             $.range_piece,
@@ -210,8 +225,11 @@ module.exports = grammar({
         // https://llvm.org/docs/TableGen/ProgRef.html#if-select-statements-based-on-a-test
         if: $ => prec.right(
             seq('if', field('cond', $.value), 'then', $.if_body, optional(seq('else', field('else', $.if_body))))),
+        _if_body_statement: $ => choice(
+            $._statement,
+            $._preprocessor_directive),
         if_body: $ => choice(
-            seq('{', repeat($._statement), '}'),
+            seq('{', repeat($._if_body_statement), '}'),
             $._statement),
 
         // https://llvm.org/docs/TableGen/ProgRef.html#assert-check-that-a-condition-is-true
@@ -223,6 +241,10 @@ function sepBy (sep, rule) {
     return optional(commaSep1(sep, rule))
 }
 
-function sepBy1 (sep, rule) {
-    return seq(rule, repeat(seq(sep, rule)))
+function sepBy1 (sep, rule, allowTrailing = true) {
+    if(allowTrailing) {
+        return seq(rule, repeat(seq(sep, rule)), optional(sep))
+    } else {
+        return seq(rule, repeat(seq(sep, rule)))
+    }
 }

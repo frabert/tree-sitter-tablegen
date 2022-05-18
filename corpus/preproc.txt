@@ -65,3 +65,33 @@ def y;
         (value
           (tok_identifier))
         (record_body)))))
+
+====
+Intertwined if
+====
+
+class Foo {
+#ifdef A
+def Flub;
+#else
+def Florb;
+#endif
+}
+
+---
+
+(source_file
+  (class
+    (tok_identifier)
+    (record_body
+      (preproc_ifdef
+        (macro_name)
+        (def
+          (value
+            (tok_identifier))
+          (record_body))
+        (preproc_else
+          (def
+            (value
+              (tok_identifier))
+            (record_body)))))))

@@ -61,3 +61,20 @@ multiclass Foo {
         (value
           (tok_identifier))
         (record_body))))
+
+============
+Multiclass 4
+============
+
+multiclass A : B, C;
+
+---
+
+(source_file
+  (multiclass
+    (tok_identifier)
+    (parent_class_list
+      (class_ref
+        (tok_identifier))
+      (class_ref
+        (tok_identifier)))))

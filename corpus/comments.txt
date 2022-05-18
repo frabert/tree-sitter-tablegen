@@ -1,14 +1,55 @@
-========
-Comments
-========
+===========
+Single line
+===========
 
 // Comment
-/*
-  Comment
-*/
 
 ---
 
 (source_file
-  (comment)
-  (comment))
+  (singleline_comment))
+
+=========
+Multiline
+=========
+
+/*
+  comment
+  */
+
+---
+
+(source_file
+  (multiline_comment))
+
+======
+Nested
+======
+
+/*
+  /* hello */
+  world
+  */
+
+---
+
+(source_file
+  (multiline_comment))
+
+========
+Nested 2
+========
+
+/* foo
+
+/ foo
+
+     /*NoReg*/, baz
+     
+      
+      */
+
+---
+
+(source_file
+  (multiline_comment))

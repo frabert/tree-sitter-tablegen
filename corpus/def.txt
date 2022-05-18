@@ -274,3 +274,37 @@ def Foo {
         (tok_identifier)
         (value
           (tok_code))))))
+
+======
+Def 12
+======
+
+def : A<[[],]>;
+
+---
+
+(source_file
+  (def
+    (record_body
+      (parent_class_list
+        (class_ref
+          (tok_identifier)
+          (value_list
+            (value
+              (value_list
+                (value)))))))))
+
+======
+Def 13
+======
+
+def _#NAME#;
+
+---
+
+(source_file
+  (def
+    (value
+      (tok_identifier)
+      (tok_identifier))
+    (record_body)))

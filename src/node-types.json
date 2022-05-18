@@ -350,6 +350,14 @@
           "named": true
         },
         {
+          "type": "preproc_define",
+          "named": true
+        },
+        {
+          "type": "preproc_ifdef",
+          "named": true
+        },
+        {
           "type": "type",
           "named": true
         }
@@ -428,6 +436,14 @@
           },
           {
             "type": "multiclass",
+            "named": true
+          },
+          {
+            "type": "preproc_define",
+            "named": true
+          },
+          {
+            "type": "preproc_ifdef",
             "named": true
           },
           {
@@ -562,6 +578,14 @@
         {
           "type": "multiclass",
           "named": true
+        },
+        {
+          "type": "preproc_define",
+          "named": true
+        },
+        {
+          "type": "preproc_ifdef",
+          "named": true
         }
       ]
     }
@@ -633,6 +657,14 @@
         {
           "type": "multiclass",
           "named": true
+        },
+        {
+          "type": "preproc_define",
+          "named": true
+        },
+        {
+          "type": "preproc_ifdef",
+          "named": true
         }
       ]
     }
@@ -694,7 +726,7 @@
     "fields": {
       "body": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "assert",
@@ -722,6 +754,14 @@
           },
           {
             "type": "let",
+            "named": true
+          },
+          {
+            "type": "preproc_define",
+            "named": true
+          },
+          {
+            "type": "preproc_ifdef",
             "named": true
           }
         ]
@@ -987,9 +1027,22 @@
         {
           "type": "parent_class_list",
           "named": true
+        },
+        {
+          "type": "preproc_define",
+          "named": true
+        },
+        {
+          "type": "preproc_ifdef",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "singleline_comment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",
@@ -1580,6 +1633,10 @@
     "named": false
   },
   {
+    "type": "//",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -1632,10 +1689,6 @@
     "named": false
   },
   {
-    "type": "comment",
-    "named": true
-  },
-  {
     "type": "cond_operator",
     "named": true
   },
@@ -1676,6 +1729,10 @@
     "named": true
   },
   {
+    "type": "field",
+    "named": false
+  },
+  {
     "type": "foreach",
     "named": false
   },
@@ -1714,6 +1771,10 @@
   {
     "type": "multiclass",
     "named": false
+  },
+  {
+    "type": "multiline_comment",
+    "named": true
   },
   {
     "type": "string_type",
